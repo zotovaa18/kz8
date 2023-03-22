@@ -91,7 +91,7 @@ class Tour(models.Model):
     url = models.SlugField(max_length=130, unique=True, null=True)
 
     def get_absolute_url(self):
-        return reverse("movie_detail", kwargs={"slug": self.url})
+        return reverse("tour_detail", kwargs={"slug": self.url})
 
     def __str__(self):
         return self.title
@@ -133,3 +133,26 @@ class Reviews(models.Model):
     class Meta:
         verbose_name = "Отзыв"
         verbose_name_plural = "Отзывы"
+
+
+class Tinder_review_2(models.Model):
+    is_pair = models.CharField(max_length=200, choices = (('yes', 'Да'), ('no', 'Нет'),))
+    what = models.CharField(max_length=200, choices = (('talk', 'Только общались'),
+                                                     ('trip', 'Поехали в путешествие вместе'),
+                                                       ('continue', 'Завязались отношения'),
+                                                       ('married', 'Поженились'),
+                                                       ))
+    rating = models.CharField(max_length=200, choices = (('1', '1'),
+                                                            ('2', '2'),
+                                                            ('3', '3'),
+                                                            ('4', '4'),
+                                                            ('5', '5'),
+                                                            ))
+    review = models.CharField(max_length=1000)
+
+
+class all_client_trips(models.Model):
+    city = models.CharField(max_length=20)
+    tour = models.CharField(max_length=20)
+    price = models.IntegerField()
+    days = models.IntegerField()

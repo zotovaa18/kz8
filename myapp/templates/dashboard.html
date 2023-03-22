@@ -1,85 +1,72 @@
-<div>
-    <style>
-        #chart-wrapper-left {
-            display: inline-block;
-            position: absolute;
-            top: 100px;
-            left: 120px;
-            width: 30%;
-        }
 
-        #chart-wrapper-right {
-            display: inline-block;
-            position: absolute;
-            top: 100px;
-            left: 700px;
-            width: 30%;
-        }
-    </style>
-    <p align="center">Reviews Dashboard</p>
-    <div id="chart-wrapper-left">
-        <canvas id="reviews_dashboard_pie"></canvas>
-    </div>
-    <div id="chart-wrapper-right">
-        <canvas id="reviews_dashboard_line"></canvas>
-    </div>
+<div>
+  <style>
+  #chart-wrapper-left {
+    display: inline-block;
+    position: absolute;
+    top: 100px; left: 120px;
+    width: 30%;
+  }
+  #chart-wrapper-right {
+    display: inline-block;
+    position: absolute;
+    top: 100px; left: 700px;
+    width: 30%;
+  }
+</style>
+  <p align="center">Reviews Dashboard</p>
+  <div id="chart-wrapper-left">
+  <canvas  id="reviews_pairs_dashboard_bar"></canvas>
+<canvas  id="reviews_pairs_dashboard_bar"></canvas>
+
+</div>
+  <div id="chart-wrapper-right">
+    <p align="center"></p>
+<canvas id="reviews_what_dashboard_pie"></canvas>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    const ctx_pie = document.getElementById('reviews_dashboard_pie');
+  const ctx_bar = document.getElementById('reviews_pairs_dashboard_bar');
 
-    new Chart(ctx_pie, {
-        type: 'pie',
-        data: {
-            labels: {
-    {
-        labels | safe
-    }
-    },
-    datasets: [{
+  new Chart(ctx_bar, {
+    type: 'bar',
+    data: {
+      labels: {{labels_rating|safe}},
+      datasets: [{
         label: 'Reviews',
-        data: {{data | safe
-    }
-    },
-    borderWidth: 1
-    }]
+        data: {{data_rating|safe}},
+        borderWidth: 1
+      }]
     },
     options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+      scales: {
+        y: {
+          beginAtZero: true
         }
+      }
     }
-    })
-    ;
-    const ctx_line = document.getElementById('reviews_dashboard_line');
-    new Chart(ctx_line, {
-        type: 'line',
-        data: {
-            labels: {
-    {
-        labels | safe
-    }
-    },
-    datasets: [{
-        label: 'Reviews',
-        data: {{data | safe
-    }
-    },
-    borderWidth: 1
-    }]
+  });
+const ctx_pie = document.getElementById('reviews_what_dashboard_pie');
+ new Chart(ctx_pie, {
+    type: 'pie',
+    data: {
+      labels: {{labels_what|safe}},
+      datasets: [{
+        label: 'Pair found',
+        data: {{data_what|safe}},
+        borderWidth: 1
+      }]
     },
     options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+      scales: {
+        y: {
+          beginAtZero: true
         }
+      }
     }
-    })
-    ;
+  });
 
 </script>
